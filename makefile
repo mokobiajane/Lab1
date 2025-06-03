@@ -32,6 +32,7 @@ clean:
 run: $(BIN)
 	./$(BIN)
 
+
 	.PHONY: all clean run
 docs:
 	doxygen Doxyfile	
