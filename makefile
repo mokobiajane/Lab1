@@ -1,55 +1,37 @@
-PROJECT = lab
+# Compiler and flags
+CXX := g++
+CXXFLAGS := -std=c++17 -Wall -Wextra -Iinclude -O2
 
-LIBPROJECT = $(PROJECT).a
+# Directories
+SRC_DIR := src
+INC_DIR := include
+IMG_DIR := images
+BIN := lab
 
-TESTPROJECT = test-$(PROJECT)
+# Sources and objects
+SRCS := $(wildcard $(SRC_DIR)/*.cpp)
+OBJS := $(SRCS:.cpp=.o)
 
-CXX = g++
+# Default target
+all: $(BIN)
 
-A = ar
+# Build executable
+$(BIN): $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
-AFLAGS = rsv
+# Pattern rule for object files
+$(SRC_DIR)/%.o: $(SRC_DIR)/%.cpp $(INC_DIR)/main.h
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-CCXFLAGS = -I. -std=c++17 -Wall -g -fPIC
-
-LDXXFLAGS = $(CCXFLAGS) -L. -l:$(LIBPROJECT)
-
-LDGTESTFLAGS = $(LDXXFLAGS) -lgtest -lgtest_main -lpthread
-
-DEPS=$(wildcard *.h)
-
-OBJ=main.o
-
-TEST-OBJ=test_transformers.o 
-
-
-.PHONY: default
-
-default: all;
-
-%.o: %.cpp $(DEPS)
-	$(CXX) -c -o $@ $< $(CXXFLAGS)
-
-$(LIBPROJECT): $(OBJ)
-	$(A) $(AFLAGS) $@ $^
-
-$(PROJECT): main.o $(LIBPROJECT)
-	$(CXX) -o $@ main.o $(LDXXFLAGS)
-
-
-$(TESTPROJECT): $(LIBPROJECT) $(TEST-OBJ)
-	$(CXX) -o $@ $(TEST-OBJ) $(LDGTESTFLAGS)
-
-test: $(TESTPROJECT)
-
-all: $(PROJECT)
-
-.PHONY: clean
-
+# Clean target
 clean:
-	rm -f *.o , output_clockwise.bmp , output_counterclockwise.bmp , output_filtered.bmp 
+	rm -f $(SRC_DIR)/*.o $(BIN)
+	rm -f $(IMG_DIR)/output_*.bmp
 
-cleanall: clean
-	rm -f $(PROJECT)
-	rm -f $(LIBPROJECT)
-	rm -f $(TESTPROJECT)
+# Run the program
+run: $(BIN)
+	./$(BIN)
+
+	.PHONY: all clean run
+docs:
+	doxygen Doxyfile	
