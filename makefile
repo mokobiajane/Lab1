@@ -33,6 +33,7 @@ $(SRC_DIR)/%.o: $(SRC_DIR)/%.cpp $(INC_DIR)/main.h
 run-tests: $(BIN) $(TEST_BIN)
 	./$(TEST_BIN)
 
+
 $(TEST_BIN): $(TEST_SRC)
 	$(CXX) $(CXXFLAGS) $< -o $@ -lgtest -lgtest_main -pthread
 
