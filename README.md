@@ -49,8 +49,9 @@ xdg-open docs/html/index.html
 ```bash
 make         # Compile
 ./lab        # Run the program
+make run-tests       #build and run test
 doxygen docs/Doxyfile && xdg-open docs/html/index.html   # Generate Doxygen docs
-make clean   # Clean build artifacts
+make clean    # Clean build artifacts
 ```
 
 ---
@@ -195,3 +196,6 @@ This project demonstrates how to:
 
 It is designed to be **fast**, **modular**, and **extendable** for future image processing features.
 
+## License
+
+This project is licensed under the [MIT License](LICENSE).

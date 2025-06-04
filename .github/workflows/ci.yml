@@ -11,17 +11,20 @@ on:
       - feature/parallel
 
 jobs:
-  build-and-run:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Set up C++ build environment
+    - name: Set up C++ build environment with Google Test
       run: |
         sudo apt-get update
-        sudo apt-get install -y build-essential
+        sudo apt-get install -y build-essential cmake libgtest-dev
+        sudo cmake -S /usr/src/googletest -B /usr/src/googletest/build
+        sudo cmake --build /usr/src/googletest/build
+        sudo cp /usr/src/googletest/build/lib/*.a /usr/lib
 
     - name: Create images folder and dummy input
       run: |
@@ -32,6 +35,10 @@ jobs:
       run: |
         make
 
-    - name: Clean build artifacts
+    - name: Run unit tests
       run: |
-        make clean
+        make run-tests
+
+    - name: Clean up
+      run: |
+        make clean 

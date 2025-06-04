@@ -6,33 +6,43 @@ CXXFLAGS := -std=c++17 -Wall -Wextra -Iinclude -O2
 SRC_DIR := src
 INC_DIR := include
 IMG_DIR := images
-BIN := lab
 
-# Sources and objects
-SRCS := $(wildcard $(SRC_DIR)/*.cpp)
-OBJS := $(SRCS:.cpp=.o)
+# Output binaries
+BIN := lab
+TEST_BIN := test
+
+# Source files
+MAIN_SRC := $(SRC_DIR)/main.cpp
+TEST_SRC := $(SRC_DIR)/test.cpp
+
+# Object files
+MAIN_OBJ := $(MAIN_SRC:.cpp=.o)
 
 # Default target
 all: $(BIN)
 
-# Build executable
-$(BIN): $(OBJS)
+# Build main executable
+$(BIN): $(MAIN_OBJ)
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-# Pattern rule for object files
+# Compile main object
 $(SRC_DIR)/%.o: $(SRC_DIR)/%.cpp $(INC_DIR)/main.h
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Clean target
+# Build and run tests
+run-tests: $(BIN) $(TEST_BIN)
+	./$(TEST_BIN)
+
+$(TEST_BIN): $(TEST_SRC)
+	$(CXX) $(CXXFLAGS) $< -o $@ -lgtest -lgtest_main -pthread
+
+# Clean build files
 clean:
-	rm -f $(SRC_DIR)/*.o $(BIN)
+	rm -f $(SRC_DIR)/*.o $(BIN) $(TEST_BIN)
 	rm -f $(IMG_DIR)/output_*.bmp
 
-# Run the program
-run: $(BIN)
-	./$(BIN)
-
-
-	.PHONY: all clean run
+# Generate docs
 docs:
-	doxygen Doxyfile	
+	doxygen Doxyfile
+
+.PHONY: all clean run-tests docs 

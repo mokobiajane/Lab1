@@ -3,17 +3,17 @@
  *
  # summary of the time taken in my project
  *
- * Grayscale conversion took 27 ms
+ * Grayscale conversion (before) 73 ms, (after parallisation): 47ms
  *
  * Memory allocated for loading the image: 2457600 bytes (2400 KB)
  *
- * Clockwise rotation took 23 ms
+ * Clockwise rotation (before): 38 ms, (after parallisation): 24ms
  *
- * Counterclockwise rotation took 26 ms
+ * Counterclockwise rotation (before): 25 ms, (after parallisation): 16ms
  *
- * Gaussian filtering took 282 ms
+ * Gaussian filtering (before) : 254 ms, (after parallisation): 197ms
  *
- * Debug pixel value (before filter): 188, after filter: 187
+ * Debug pixel value (before filter): 188, (after filter): 187
  *
  */
 # 📘 BMP Image Processor Report
