@@ -79,17 +79,17 @@ $(function() {
 summary of the time taken in my project</h1>
 <ul>
 <li></li>
-<li>Grayscale conversion took 27 ms</li>
+<li>Grayscale conversion (before) 73 ms, (after parallisation): 47ms</li>
 <li></li>
 <li>Memory allocated for loading the image: 2457600 bytes (2400 KB)</li>
 <li></li>
-<li>Clockwise rotation took 23 ms</li>
+<li>Clockwise rotation (before): 38 ms, (after parallisation): 24ms</li>
 <li></li>
-<li>Counterclockwise rotation took 26 ms</li>
+<li>Counterclockwise rotation (before): 25 ms, (after parallisation): 16ms</li>
 <li></li>
-<li>Gaussian filtering took 282 ms</li>
+<li>Gaussian filtering (before) : 254 ms, (after parallisation): 197ms</li>
 <li></li>
-<li>Debug pixel value (before filter): 188, after filter: 187</li>
+<li>Debug pixel value (before filter): 188, (after filter): 187</li>
 <li>*/ </li>
 </ul>
 <h1><a class="anchor" id="autotoc_md1"></a>
@@ -169,7 +169,7 @@ summary of the time taken in my project</h1>
 <p>Each function is documented using <a href="https://www.doxygen.nl/manual/docblocks.html">Doxygen</a> style:</p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"><span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="main_8cpp.html#a43da302f04369e920acce1bf6520ca1c">load_bmp</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* file_path, <span class="keywordtype">int</span>&amp; width, <span class="keywordtype">int</span>&amp; height);</div>
-<div class="ttc" id="amain_8cpp_html_a43da302f04369e920acce1bf6520ca1c"><div class="ttname"><a href="main_8cpp.html#a43da302f04369e920acce1bf6520ca1c">load_bmp</a></div><div class="ttdeci">unsigned char * load_bmp(const char *file_path, int &amp;width, int &amp;height)</div><div class="ttdoc">Loads a BMP file, converts it to grayscale, and returns the image buffer.</div><div class="ttdef"><b>Definition</b> main.cpp:54</div></div>
+<div class="ttc" id="amain_8cpp_html_a43da302f04369e920acce1bf6520ca1c"><div class="ttname"><a href="main_8cpp.html#a43da302f04369e920acce1bf6520ca1c">load_bmp</a></div><div class="ttdeci">unsigned char * load_bmp(const char *file_path, int &amp;width, int &amp;height)</div><div class="ttdoc">Loads a BMP file, converts it to grayscale, and returns the image buffer.</div><div class="ttdef"><b>Definition</b> main.cpp:77</div></div>
 </div><!-- fragment --><p>To generate documentation:</p>
 <div class="fragment"><div class="line">doxygen docs/Doxyfile</div>
 <div class="line">xdg-open docs/html/index.html</div>

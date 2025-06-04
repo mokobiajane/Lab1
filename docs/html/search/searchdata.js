@@ -2,9 +2,9 @@ var indexSectionsWithContent =
 {
   0: "12345678abcdfilmoprstw📑📘",
   1: "b",
-  2: "mr",
-  3: "aclmprs",
-  4: "b",
+  2: "mrt",
+  3: "acflmprst",
+  4: "bi",
   5: "biprw"
 };
 
