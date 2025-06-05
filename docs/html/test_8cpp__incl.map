@@ -1,0 +1,9 @@
+<map id="src/test.cpp" name="src/test.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="122,5,219,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,109,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="154,33,89,74,86,69,151,28"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="134,79,207,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="173,31,173,65,168,65,168,31"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="231,79,297,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="187,29,240,68,236,72,184,33"/>
+</map>

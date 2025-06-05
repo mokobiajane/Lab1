@@ -1,0 +1,44 @@
+name: C++ CI
+
+on:
+  push:
+    branches:
+      - main
+      - feature/parallel
+  pull_request:
+    branches:
+      - main
+      - feature/parallel
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up C++ build environment with Google Test
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential cmake libgtest-dev
+        sudo cmake -S /usr/src/googletest -B /usr/src/googletest/build
+        sudo cmake --build /usr/src/googletest/build
+        sudo cp /usr/src/googletest/build/lib/*.a /usr/lib
+
+    - name: Create images folder and dummy input
+      run: |
+        mkdir -p images
+        echo -ne '\x42\x4D\x3A\x00\x00\x00\x00\x00\x00\x00\x36\x00\x00\x00\x28\x00\x00\x00\x02\x00\x00\x00\x02\x00\x00\x00\x01\x00\x18\x00\x00\x00\x00\x00\x04\x00\x00\x00\x13\x0B\x00\x00\x13\x0B\x00\x00\x00\x00\x00\x00\x00\x00\x00\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF' > images/input_image.bmp
+
+    - name: Build the project
+      run: |
+        make
+
+    - name: Run unit tests
+      run: |
+        make run-tests
+
+    - name: Clean up
+      run: |
+        make clean 
