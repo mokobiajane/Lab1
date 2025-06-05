@@ -145,6 +145,19 @@ RECURSIVE = YES
 
 This project showcases efficient image processing in C++ with multithreading and clean documentation. It also serves as a template for further GPU-based or SIMD-optimized processing in the future.
 
+Grayscale conversion (before) 73 ms, (after parallisation): 47ms
+ *
+ * Memory allocated for loading the image: 2457600 bytes (2400 KB)
+ *
+ * Clockwise rotation (before): 38 ms, (after parallisation): 24ms
+ *
+ * Counterclockwise rotation (before): 25 ms, (after parallisation): 16ms
+ *
+ * Gaussian filtering (before) : 254 ms, (after parallisation): 197ms
+ *
+ * Debug pixel value (before filter): 188, (after filter): 187
+ *
+
 ---
 
 🔗 **Related Files:**
